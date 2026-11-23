@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KeryxOSINT — Local-First OSINT &amp; Digital Forensics Workstation by Hollowboat</title>
+  <meta name="description" content="Created by Kalakkalx at Hollowboat, KeryxOSINT is a free, local-first OSINT and digital forensics workstation for transparent identity reconnaissance. Operating locally without cloud or paid APIs, it correlates 750+ username, 340+ email, phone, and social sources via dHash matching, Git forensics, and SHA-256 evidence vaults." />
+  <meta name="keywords" content="KeryxOSINT, Hollowboat, Kalakkalx, OSINT, Digital Forensics, Identity Reconnaissance, Local-First OSINT, dHash, Threat Intelligence" />
+  <meta name="author" content="Kalakkalx — Hollowboat" />
+
+  <!-- OpenGraph Metadata for Social & Search Previews -->
+  <meta property="og:title" content="KeryxOSINT — Local-First OSINT & Digital Forensics Workstation" />
+  <meta property="og:description" content="Created by Kalakkalx at Hollowboat. Correlate 750+ username, 340+ email, phone, and social sources locally with dHash visual matching and SHA-256 evidence vaults." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://github.com/Kalakkalx/KeryxOSINT" />
+
+  <!-- Structured Data (JSON-LD) for Google Search Indexing -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "KeryxOSINT",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "Windows, Linux, macOS",
+    "license": "https://opensource.org/licenses/MIT",
+    "url": "https://github.com/Kalakkalx/KeryxOSINT",
+    "description": "Created by Kalakkalx at Hollowboat, KeryxOSINT is a free, local-first OSINT and digital forensics workstation for transparent identity reconnaissance.",
+    "author": {
+      "@type": "Person",
+      "name": "Kalakkalx",
+      "email": "kalakkalkarthi6838@gmail.com",
+      "sameAs": [
+        "https://github.com/Kalakkalx",
+        "https://www.instagram.com/kalakkalx/"
+      ]
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Hollowboat",
+      "sameAs": [
+        "https://www.instagram.com/hollowboat/"
+      ]
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #0b0e14;
+      --surface: #131822;
+      --border: #232b3a;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #3fb950;
+      --accent-soft: rgba(63, 185, 80, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .badge {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid rgba(63, 185, 80, 0.3);
+    }
+
+    h1 {
+      font-size: 2.25rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 1.25rem;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.92rem;
+      padding: 0.45rem 0.9rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: border-color 0.2s;
+    }
+
+    nav a:hover {
+      border-color: var(--accent);
+    }
+
+    main {
+      display: grid;
+      gap: 1.75rem;
+    }
+
+    section, article, aside {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.85rem;
+      color: #ffffff;
+    }
+
+    ul {
+      padding-left: 1.25rem;
+      color: var(--muted);
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    li strong {
+      color: var(--text);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.85rem;
+      margin-top: 0.75rem;
+    }
+
+    .contact-item {
+      padding: 0.75rem 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.92rem;
+    }
+
+    .contact-item span {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-item a {
+      color: var(--accent);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .contact-item a:hover {
+      text-decoration: underline;
+    }
+
+    aside {
+      border-left: 3px solid var(--accent);
+    }
+
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.88rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    footer a {
+      color: var(--text);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badges">
+        <span class="badge">MIT License</span>
+        <span class="badge">Studio: Hollowboat</span>
+        <span class="badge">Local-First Architecture</span>
+      </div>
+      <h1>KeryxOSINT</h1>
+      <p class="subtitle">
+        Created by <strong>Kalakkalx</strong> at <strong>Hollowboat</strong> — a free, local-first OSINT and digital forensics workstation for transparent identity reconnaissance.
+      </p>
+      <nav aria-label="Primary Links">
+        <a href="https://github.com/Kalakkalx/KeryxOSINT" target="_blank" rel="noopener">GitHub Repository</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#contact">Creator &amp; Studio</a>
+        <a href="#disclaimer">Legal Notice</a>
+      </nav>
+    </header>
+
+    <main>
+      <article id="overview">
+        <h2>Overview</h2>
+        <p>
+          <strong>KeryxOSINT</strong> is an open-source intelligence and digital forensics workstation engineered for explainable, evidence-first identity reconnaissance. Operating 100% locally without mandatory cloud dependencies or paid API subscriptions, it correlates data across <strong>750+ username platforms</strong>, <strong>340+ email services</strong>, telecom routing records, domain certificates, and public social media.
+        </p>
+      </article>
+
+      <section id="capabilities">
+        <h2>Core Capabilities</h2>
+        <ul>
+          <li><strong>Evidence-First Entity Resolution:</strong> Separates raw observations from verified relationships and flags contradictions rather than performing opaque black-box merges.</li>
+          <li><strong>Perceptual Image Fingerprinting (dHash):</strong> Locally caches avatars and media artifacts to cross-match profile pictures across platforms without relying on expiring CDN URLs.</li>
+          <li><strong>Git &amp; Domain Forensics:</strong> Extracts commit author timelines, certificate transparency subdomains, DNS records, and historical web snapshots.</li>
+          <li><strong>Recursive Bio Pivoting:</strong> Harvests exposed emails, handles, and external links from discovered bios for follow-up sweeps.</li>
+          <li><strong>SHA-256 Local Evidence Vault:</strong> Persists cases in SQLite with cryptographic integrity hashes and instant JSON, CSV, and printable PDF exports.</li>
+        </ul>
+      </section>
+
+      <section id="contact">
+        <h2>Creator &amp; Studio</h2>
+        <p>Developed and maintained by <strong>Kalakkalx</strong> under <strong>Hollowboat</strong>.</p>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <span>Email</span>
+            <a href="mailto:kalakkalkarthi6838@gmail.com">kalakkalkarthi6838@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <span>Creator Instagram</span>
+            <a href="https://www.instagram.com/kalakkalx/" target="_blank" rel="noopener">@kalakkalx</a>
+          </div>
+          <div class="contact-item">
+            <span>Studio Instagram</span>
+            <a href="https://www.instagram.com/hollowboat/" target="_blank" rel="noopener">@hollowboat</a>
+          </div>
+          <div class="contact-item">
+            <span>Source Code</span>
+            <a href="https://github.com/Kalakkalx/KeryxOSINT" target="_blank" rel="noopener">github.com/Kalakkalx/KeryxOSINT</a>
+          </div>
+        </div>
+      </section>
+
+      <aside id="disclaimer">
+        <h2>Legal &amp; Ethical Use Disclaimer</h2>
+        <p>
+          KeryxOSINT is intended strictly for authorized security research, digital forensics, self-auditing, and lawful open-source intelligence investigations. Users are solely responsible for complying with applicable local privacy laws, platform terms of service, and data protection regulations.
+        </p>
+      </aside>
+    </main>
+
+    <footer>
+      <span>&copy; 2026 Hollowboat (Kalakkalx). Released under the <a href="https://github.com/Kalakkalx/KeryxOSINT/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>.</span>
+      <span>Contact: <a href="mailto:kalakkalkarthi6838@gmail.com">kalakkalkarthi6838@gmail.com</a></span>
+    </footer>
+  </div>
+</body>
+</html>
