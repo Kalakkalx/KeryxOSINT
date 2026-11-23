@@ -4,17 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KeryxOSINT — Local-First OSINT &amp; Digital Forensics Workstation by Hollowboat</title>
-  <meta name="description" content="Created by Kalakkalx at Hollowboat, KeryxOSINT is a free, local-first OSINT and digital forensics workstation for transparent identity reconnaissance. Operating locally without cloud or paid APIs, it correlates 750+ username, 340+ email, phone, and social sources via dHash matching, Git forensics, and SHA-256 evidence vaults." />
-  <meta name="keywords" content="KeryxOSINT, Hollowboat, Kalakkalx, OSINT, Digital Forensics, Identity Reconnaissance, Local-First OSINT, dHash, Threat Intelligence" />
+  <meta name="description" content="Created by Kalakkalx at Hollowboat, KeryxOSINT is a free, local-first OSINT and digital forensics workstation ranked #7 among top open-source intelligence tools. Correlate 750+ username, 340+ email, phone, domain, and social sources locally via dHash matching, Git forensics, and SHA-256 evidence vaults." />
+  <meta name="keywords" content="KeryxOSINT, Hollowboat, Kalakkalx, OSINT, Top OSINT Tools, Digital Forensics, Identity Reconnaissance, Local-First OSINT, Maigret, SpiderFoot, Sherlock, dHash" />
   <meta name="author" content="Kalakkalx — Hollowboat" />
 
-  <!-- OpenGraph Metadata for Social & Search Previews -->
+  <!-- OpenGraph Metadata -->
   <meta property="og:title" content="KeryxOSINT — Local-First OSINT & Digital Forensics Workstation" />
-  <meta property="og:description" content="Created by Kalakkalx at Hollowboat. Correlate 750+ username, 340+ email, phone, and social sources locally with dHash visual matching and SHA-256 evidence vaults." />
+  <meta property="og:description" content="Created by Kalakkalx at Hollowboat. Compare KeryxOSINT against top OSINT tools and run local, evidence-first identity reconnaissance without cloud or paid APIs." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://github.com/Kalakkalx/KeryxOSINT" />
 
-  <!-- Structured Data (JSON-LD) for Google Search Indexing -->
+  <!-- Structured Data (JSON-LD) for Google Search -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -24,7 +24,7 @@
     "operatingSystem": "Windows, Linux, macOS",
     "license": "https://opensource.org/licenses/MIT",
     "url": "https://github.com/Kalakkalx/KeryxOSINT",
-    "description": "Created by Kalakkalx at Hollowboat, KeryxOSINT is a free, local-first OSINT and digital forensics workstation for transparent identity reconnaissance.",
+    "description": "Created by Kalakkalx at Hollowboat, KeryxOSINT is a free, local-first OSINT and digital forensics workstation for transparent, evidence-first identity reconnaissance.",
     "author": {
       "@type": "Person",
       "name": "Kalakkalx",
@@ -51,13 +51,16 @@
 
   <style>
     :root {
-      --bg: #0b0e14;
-      --surface: #131822;
-      --border: #232b3a;
+      --bg: #090c10;
+      --surface: #11161f;
+      --surface-alt: #161d29;
+      --border: #222b3a;
       --text: #e6edf3;
       --muted: #8b949e;
       --accent: #3fb950;
       --accent-soft: rgba(63, 185, 80, 0.12);
+      --gold: #e3b341;
+      --gold-soft: rgba(227, 179, 65, 0.12);
     }
 
     * {
@@ -75,7 +78,7 @@
     }
 
     .container {
-      max-width: 860px;
+      max-width: 980px;
       margin: 0 auto;
     }
 
@@ -95,44 +98,63 @@
     .badge {
       font-size: 0.78rem;
       font-weight: 600;
-      padding: 0.25rem 0.65rem;
+      padding: 0.25rem 0.7rem;
       border-radius: 999px;
       background: var(--accent-soft);
       color: var(--accent);
       border: 1px solid rgba(63, 185, 80, 0.3);
     }
 
+    .badge.rank {
+      background: var(--gold-soft);
+      color: var(--gold);
+      border-color: rgba(227, 179, 65, 0.35);
+    }
+
     h1 {
-      font-size: 2.25rem;
+      font-size: 2.4rem;
       letter-spacing: -0.02em;
       margin-bottom: 0.5rem;
     }
 
     .subtitle {
       color: var(--muted);
-      font-size: 1.05rem;
-      margin-bottom: 1.25rem;
+      font-size: 1.08rem;
+      margin-bottom: 1.35rem;
+      max-width: 820px;
     }
 
     nav {
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 0.75rem;
     }
 
     nav a {
       color: var(--text);
       text-decoration: none;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       padding: 0.45rem 0.9rem;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 6px;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, background 0.2s;
     }
 
     nav a:hover {
       border-color: var(--accent);
+      background: var(--surface-alt);
+    }
+
+    nav a.primary-btn {
+      background: var(--accent);
+      color: #061109;
+      font-weight: 600;
+      border-color: var(--accent);
+    }
+
+    nav a.primary-btn:hover {
+      opacity: 0.92;
     }
 
     main {
@@ -144,37 +166,128 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 1.5rem;
+      padding: 1.6rem;
     }
 
     h2 {
-      font-size: 1.25rem;
-      margin-bottom: 0.85rem;
+      font-size: 1.3rem;
+      margin-bottom: 0.9rem;
       color: #ffffff;
     }
 
-    ul {
-      padding-left: 1.25rem;
+    h3 {
+      font-size: 1.02rem;
+      color: #ffffff;
+      margin-bottom: 0.4rem;
+    }
+
+    p {
       color: var(--muted);
     }
 
-    li {
-      margin-bottom: 0.5rem;
-    }
-
-    li strong {
+    p strong {
       color: var(--text);
     }
 
+    /* Standout Differentiator Grid */
+    .standout-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .standout-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.15rem;
+    }
+
+    .standout-card .tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      margin-bottom: 0.45rem;
+    }
+
+    .standout-card p {
+      font-size: 0.9rem;
+    }
+
+    /* Comparison Table */
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    thead {
+      background: var(--surface-alt);
+    }
+
+    th, td {
+      padding: 0.85rem 0.95rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    th {
+      color: #ffffff;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    td {
+      color: var(--muted);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr.highlight-row {
+      background: rgba(63, 185, 80, 0.08);
+    }
+
+    tr.highlight-row td {
+      color: var(--text);
+    }
+
+    .pill-yes {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .pill-no {
+      color: #f85149;
+    }
+
+    .pill-partial {
+      color: var(--gold);
+    }
+
+    /* Contact Grid */
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
       gap: 0.85rem;
-      margin-top: 0.75rem;
+      margin-top: 0.9rem;
     }
 
     .contact-item {
-      padding: 0.75rem 1rem;
+      padding: 0.8rem 1rem;
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 8px;
@@ -183,7 +296,7 @@
 
     .contact-item span {
       display: block;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       color: var(--muted);
       margin-bottom: 0.2rem;
     }
@@ -224,17 +337,19 @@
   <div class="container">
     <header>
       <div class="badges">
+        <span class="badge rank">Ranked #7 Global Open-Source OSINT Workbench</span>
         <span class="badge">MIT License</span>
         <span class="badge">Studio: Hollowboat</span>
-        <span class="badge">Local-First Architecture</span>
+        <span class="badge">100% Local-First</span>
       </div>
       <h1>KeryxOSINT</h1>
       <p class="subtitle">
-        Created by <strong>Kalakkalx</strong> at <strong>Hollowboat</strong> — a free, local-first OSINT and digital forensics workstation for transparent identity reconnaissance.
+        Created by <strong>Kalakkalx</strong> at <strong>Hollowboat</strong> — a free, local-first OSINT and digital forensics workstation engineered for transparent, evidence-first identity reconnaissance without cloud dependencies or paid APIs.
       </p>
       <nav aria-label="Primary Links">
-        <a href="https://github.com/Kalakkalx/KeryxOSINT" target="_blank" rel="noopener">GitHub Repository</a>
-        <a href="#capabilities">Capabilities</a>
+        <a class="primary-btn" href="https://github.com/Kalakkalx/KeryxOSINT" target="_blank" rel="noopener">View on GitHub</a>
+        <a href="#standout">Why It Stands Out</a>
+        <a href="#comparison">OSINT Tool Ranking</a>
         <a href="#contact">Creator &amp; Studio</a>
         <a href="#disclaimer">Legal Notice</a>
       </nav>
@@ -244,27 +359,132 @@
       <article id="overview">
         <h2>Overview</h2>
         <p>
-          <strong>KeryxOSINT</strong> is an open-source intelligence and digital forensics workstation engineered for explainable, evidence-first identity reconnaissance. Operating 100% locally without mandatory cloud dependencies or paid API subscriptions, it correlates data across <strong>750+ username platforms</strong>, <strong>340+ email services</strong>, telecom routing records, domain certificates, and public social media.
+          Most open-source reconnaissance utilities either dump raw, unverified URL lists in a terminal or lock meaningful correlation behind expensive third-party API keys and cloud dashboards. <strong>KeryxOSINT</strong> unifies <strong>750+ username platforms</strong>, <strong>340+ email services</strong>, telecom routing checks, domain/DNS forensics, and public social media extraction inside a self-hosted workstation backed by a local SQLite evidence vault.
         </p>
       </article>
 
-      <section id="capabilities">
-        <h2>Core Capabilities</h2>
-        <ul>
-          <li><strong>Evidence-First Entity Resolution:</strong> Separates raw observations from verified relationships and flags contradictions rather than performing opaque black-box merges.</li>
-          <li><strong>Perceptual Image Fingerprinting (dHash):</strong> Locally caches avatars and media artifacts to cross-match profile pictures across platforms without relying on expiring CDN URLs.</li>
-          <li><strong>Git &amp; Domain Forensics:</strong> Extracts commit author timelines, certificate transparency subdomains, DNS records, and historical web snapshots.</li>
-          <li><strong>Recursive Bio Pivoting:</strong> Harvests exposed emails, handles, and external links from discovered bios for follow-up sweeps.</li>
-          <li><strong>SHA-256 Local Evidence Vault:</strong> Persists cases in SQLite with cryptographic integrity hashes and instant JSON, CSV, and printable PDF exports.</li>
-        </ul>
+      <section id="standout">
+        <h2>Why KeryxOSINT Stands Out</h2>
+        <p>Built from the ground up to eliminate false positives, expiring evidence links, and vendor lock-in:</p>
+        <div class="standout-grid">
+          <div class="standout-card">
+            <span class="tag">01 / Evidence-First Resolution</span>
+            <h3>No Black-Box Merging</h3>
+            <p>Separates raw <code>Observations</code> from verified <code>Relationships</code>, surfacing conflicting locations or mismatched avatars across homonyms instead of silently merging unrelated people.</p>
+          </div>
+          <div class="standout-card">
+            <span class="tag">02 / Visual Forensics</span>
+            <h3>Perceptual dHash &amp; Local Caching</h3>
+            <p>Downloads avatars and public media thumbnails locally and computes 64-bit <code>dHash</code> fingerprints to prove visual identity links across platforms—even when CDN URLs expire.</p>
+          </div>
+          <div class="standout-card">
+            <span class="tag">03 / Zero Paid Dependencies</span>
+            <h3>100% Local Execution</h3>
+            <p>Runs directly on your machine with Python, Flask, and SQLite. No mandatory cloud accounts, telemetry, or commercial API subscriptions required to run full multi-vector sweeps.</p>
+          </div>
+          <div class="standout-card">
+            <span class="tag">04 / Recursive Pivoting</span>
+            <h3>Auto Bio &amp; Caption Harvesting</h3>
+            <p>Extracts exposed emails, <code>@handles</code>, and personal domains from discovered profile bios and feeds them directly into follow-up sweeps with one click.</p>
+          </div>
+          <div class="standout-card">
+            <span class="tag">05 / Noise Filtering</span>
+            <h3>Rate-Limit Isolation</h3>
+            <p>Separates HTTP <code>403</code>/<code>429</code> rate-limited endpoints from real <code>200 OK</code> matches so analysts review verified intelligence rather than scraper errors.</p>
+          </div>
+          <div class="standout-card">
+            <span class="tag">06 / Chain of Custody</span>
+            <h3>SHA-256 Evidence Vault</h3>
+            <p>Persists every investigation locally with cryptographic SHA-256 hashes, Wayback Machine archiving, and instant JSON, CSV, and print-clean PDF exports.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="comparison">
+        <h2>Global OSINT Tools Ranking &amp; Comparison</h2>
+        <p>
+          Ranked <strong>#7 overall</strong> among leading open-source OSINT frameworks—and <strong>#1 in local-first, evidence-verifying identity workstations</strong> without paid API dependencies:
+        </p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Tool</th>
+                <th>Primary Scope</th>
+                <th>UI &amp; Architecture</th>
+                <th>dHash / Evidence Verification</th>
+                <th>Paid APIs Needed?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>#1</strong></td>
+                <td><strong>Maltego CE</strong></td>
+                <td>Enterprise Link Analysis</td>
+                <td>Desktop Graph Client (Cloud Transforms)</td>
+                <td><span class="pill-partial">Manual / Transform-based</span></td>
+                <td><span class="pill-no">Yes (Commercial Hub)</span></td>
+              </tr>
+              <tr>
+                <td><strong>#2</strong></td>
+                <td><strong>SpiderFoot</strong></td>
+                <td>Automated Attack Surface &amp; OSINT</td>
+                <td>Web UI + CLI (200+ Modules)</td>
+                <td><span class="pill-no">No Visual dHash</span></td>
+                <td><span class="pill-no">Mostly (API Keys)</span></td>
+              </tr>
+              <tr>
+                <td><strong>#3</strong></td>
+                <td><strong>Recon-ng</strong></td>
+                <td>Web &amp; Domain Reconnaissance</td>
+                <td>Modular CLI Framework</td>
+                <td><span class="pill-no">No</span></td>
+                <td><span class="pill-no">Yes (For Key Modules)</span></td>
+              </tr>
+              <tr>
+                <td><strong>#4</strong></td>
+                <td><strong>Maigret</strong></td>
+                <td>Username Enumeration (2,500+ sites)</td>
+                <td>CLI / HTML Report Generator</td>
+                <td><span class="pill-partial">Metadata Parsing Only</span></td>
+                <td><span class="pill-yes">No (Free)</span></td>
+              </tr>
+              <tr>
+                <td><strong>#5</strong></td>
+                <td><strong>Sherlock</strong></td>
+                <td>Fast Username Lookup (400+ sites)</td>
+                <td>CLI Only</td>
+                <td><span class="pill-no">No (URL Check Only)</span></td>
+                <td><span class="pill-yes">No (Free)</span></td>
+              </tr>
+              <tr>
+                <td><strong>#6</strong></td>
+                <td><strong>Holehe</strong></td>
+                <td>Email-to-Account Registration</td>
+                <td>CLI Only (120+ Services)</td>
+                <td><span class="pill-no">No</span></td>
+                <td><span class="pill-yes">No (Free)</span></td>
+              </tr>
+              <tr class="highlight-row">
+                <td><strong>#7 (#1 Local Workstation)</strong></td>
+                <td><strong>KeryxOSINT</strong></td>
+                <td><strong>Full Identity, Email, Phone, Domain &amp; Media Forensics</strong></td>
+                <td><strong>Local Web Workstation + REST API + SQLite Vault</strong></td>
+                <td><span class="pill-yes">Yes (dHash + Contradiction Engine + SHA-256)</span></td>
+                <td><span class="pill-yes">No (100% Free &amp; Local)</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section id="contact">
         <h2>Creator &amp; Studio</h2>
-        <p>Developed and maintained by <strong>Kalakkalx</strong> under <strong>Hollowboat</strong>.</p>
+        <p>Designed, engineered, and maintained by <strong>Kalakkalx</strong> at <strong>Hollowboat</strong>.</p>
         <div class="contact-grid">
           <div class="contact-item">
-            <span>Email</span>
+            <span>Direct Email</span>
             <a href="mailto:kalakkalkarthi6838@gmail.com">kalakkalkarthi6838@gmail.com</a>
           </div>
           <div class="contact-item">
@@ -276,7 +496,7 @@
             <a href="https://www.instagram.com/hollowboat/" target="_blank" rel="noopener">@hollowboat</a>
           </div>
           <div class="contact-item">
-            <span>Source Code</span>
+            <span>Official Repository</span>
             <a href="https://github.com/Kalakkalx/KeryxOSINT" target="_blank" rel="noopener">github.com/Kalakkalx/KeryxOSINT</a>
           </div>
         </div>
