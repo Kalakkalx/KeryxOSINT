@@ -22,6 +22,14 @@
   <meta name="twitter:title" content="KeryxOSINT — Local-First OSINT Workstation by Hollowboat" />
   <meta name="twitter:description" content="Created by Kalakkalx at Hollowboat. Free, local-first Python/Flask/Celery/Redis OSINT engine with dHash visual verification and SHA-256 evidence vaults." />
 
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    (function () {
+      emailjs.init({ publicKey: "l6nIYZLtMFwC5tag_" });
+    })();
+  </script>
+
   <!-- Structured Data (JSON-LD) for Google Search & Rich Snippets -->
   <script type="application/ld+json">
   {
@@ -228,6 +236,13 @@
       border-color: var(--accent);
     }
 
+    nav a.demo-nav-btn {
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-weight: 600;
+      border-color: rgba(88, 166, 255, 0.45);
+    }
+
     main {
       display: flex;
       flex-direction: column;
@@ -366,6 +381,83 @@
       border-color: var(--accent);
       background: var(--accent-soft);
       color: var(--accent);
+    }
+
+    /* Book a Demo Form */
+    #book-demo {
+      border-top: 3px solid var(--blue);
+    }
+
+    .demo-form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+      gap: 0.85rem;
+      margin-top: 1rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .form-field.full-span {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      font-family: inherit;
+      font-size: 0.92rem;
+      padding: 0.65rem 0.8rem;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      transition: border-color 0.2s;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+    }
+
+    .demo-submit-btn {
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.94rem;
+      font-weight: 600;
+      padding: 0.75rem 1.25rem;
+      border-radius: 7px;
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: #061109;
+      transition: opacity 0.2s;
+    }
+
+    .demo-submit-btn:hover {
+      opacity: 0.92;
+    }
+
+    .demo-submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .demo-status {
+      font-size: 0.88rem;
+      font-weight: 500;
+      margin-top: 0.25rem;
     }
 
     /* 3-Stage Pipeline */
@@ -703,6 +795,7 @@
       </p>
       <nav aria-label="Primary Navigation">
         <a class="primary-btn" href="https://github.com/Kalakkalx/KeryxOSINT" target="_blank" rel="noopener">View on GitHub</a>
+        <a class="demo-nav-btn" href="#book-demo">Book a 1-on-1 Live Demo</a>
         <a href="#demo">Live Walkthrough</a>
         <a href="#pipeline">3-Stage Pipeline</a>
         <a href="#modules">Recon Modules</a>
@@ -763,6 +856,51 @@
             </div>
           </div>
         </div>
+      </section>
+
+      <!-- Book a Live Demo Section (EmailJS Integrated) -->
+      <section id="book-demo">
+        <h2>Book a 1-on-1 Live Demo &amp; Intelligence Walkthrough</h2>
+        <p>
+          Need a live walkthrough of the 3-stage pipeline (<strong>SCAN &rarr; DEEP SCAN &rarr; DARK SCAN</strong>), a sample <strong>Hollowboat</strong> due-diligence dossier, or custom OSINT investigation support? Submit your details below and I will reply directly via email.
+        </p>
+
+        <form id="keryx-demo-form" class="demo-form">
+          <div class="form-field">
+            <label for="from_name">Full Name *</label>
+            <input type="text" id="from_name" name="from_name" placeholder="Alex Mercer" required />
+          </div>
+
+          <div class="form-field">
+            <label for="reply_to">Work or Contact Email *</label>
+            <input type="email" id="reply_to" name="reply_to" placeholder="alex@company.com" required />
+          </div>
+
+          <div class="form-field">
+            <label for="organization">Organization / Agency / Team</label>
+            <input type="text" id="organization" name="organization" placeholder="Company or Independent Researcher" />
+          </div>
+
+          <div class="form-field">
+            <label for="use_case">Demo / Investigation Focus</label>
+            <select id="use_case" name="use_case">
+              <option value="1-on-1 KeryxOSINT Live Walkthrough">1-on-1 KeryxOSINT Live Walkthrough</option>
+              <option value="Corporate / Vendor Due Diligence Dossier">Corporate / Vendor Due Diligence Dossier</option>
+              <option value="Executive Breach & Exposure Audit">Executive Breach &amp; Exposure Audit</option>
+              <option value="Custom OSINT Investigation">Custom OSINT Investigation</option>
+            </select>
+          </div>
+
+          <div class="form-field full-span">
+            <label for="message">Preferred Timezone / Notes (Optional)</label>
+            <textarea id="message" name="message" rows="3" placeholder="Share your preferred time window or the type of investigation workflow you want to see..."></textarea>
+          </div>
+
+          <div class="form-field full-span">
+            <button type="submit" id="demo-submit-btn" class="demo-submit-btn">Request 1-on-1 Live Demo</button>
+            <div id="demo-status" class="demo-status" role="status" aria-live="polite"></div>
+          </div>
+        </form>
       </section>
 
       <!-- 3-Stage Progressive Scan Pipeline -->
@@ -1042,7 +1180,7 @@
     </footer>
   </div>
 
-  <!-- Seamless Part 1 -> Part 2 Demo Video Controller -->
+  <!-- Seamless Part 1 -> Part 2 Demo Video Controller & EmailJS Submission -->
   <script>
     (function () {
       const video = document.getElementById('demoVideo');
@@ -1074,6 +1212,33 @@
 
       btnPart2.addEventListener('click', function () {
         loadPart(2, true);
+      });
+
+      // EmailJS Demo Booking Handler
+      const demoForm = document.getElementById('keryx-demo-form');
+      const submitBtn = document.getElementById('demo-submit-btn');
+      const demoStatus = document.getElementById('demo-status');
+
+      demoForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending Request...';
+        demoStatus.textContent = '';
+
+        emailjs.sendForm('Service_q7oas2p', 'template_ybxp116', this)
+          .then(function () {
+            demoStatus.style.color = '#3fb950';
+            demoStatus.textContent = 'Demo request sent! I will reply to your email shortly with session details.';
+            demoForm.reset();
+          })
+          .catch(function (err) {
+            demoStatus.style.color = '#f85149';
+            demoStatus.textContent = 'Could not send right now (' + (err.text || 'network error') + '). Feel free to email kalakkalkarthi6838@gmail.com directly.';
+          })
+          .finally(function () {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Request 1-on-1 Live Demo';
+          });
       });
     })();
   </script>
